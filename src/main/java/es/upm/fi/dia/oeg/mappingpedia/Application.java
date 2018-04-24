@@ -30,7 +30,6 @@ public class Application {
 		try {
 
 			logger.info("Loading configuration file ...");
-			//String filename="config.properties";
 			is = Application.class.getClassLoader().getResourceAsStream(configurationFilename);
 			if(is==null){
 				logger.error("Sorry, unable to find " + configurationFilename);
@@ -40,64 +39,6 @@ public class Application {
 			properties.load(is);
 			logger.info("Configuration file loaded.");
 			MappingPediaEngine.init(properties);
-			/*
-			MappingPediaEngine.setProperties(properties);
-
-			if(properties.githubEnabled()) {
-				try {
-					GitHubUtility githubClient = new GitHubUtility(properties.githubRepository(), properties.githubUser()
-							, properties.githubAccessToken()
-					);
-					//logger.info(" githubClient = " + githubClient);
-					MappingPediaEngine.githubClient_$eq(githubClient);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-			if(properties.ckanEnable()) {
-				try {
-					CKANUtility ckanClient = new CKANUtility(properties.ckanURL(), properties.ckanKey());
-					//logger.info(" ckanClient = " + ckanClient);
-					MappingPediaEngine.ckanClient_$eq(ckanClient);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-
-
-			if(properties.virtuosoEnabled()) {
-				VirtuosoClient virtuosoClient = null;
-
-				try {
-					 virtuosoClient = new VirtuosoClient(properties.virtuosoJDBC(), properties.virtuosoUser()
-							, properties.virtuosoPwd(), properties.graphName()
-					);
-					//logger.info(" virtuosoClient = " + virtuosoClient);
-					MappingPediaEngine.virtuosoClient_$eq(virtuosoClient);
-				} catch(Exception e) {
-					e.printStackTrace();
-				}
-
-				try {
-					OntModel schemaOntology = JenaClient.loadSchemaOrgOntology(
-							virtuosoClient,
-							MappingPediaConstant.SCHEMA_ORG_FILE(), MappingPediaConstant.FORMAT());
-					MappingPediaEngine.setOntologyModel(schemaOntology);
-					JenaClient jenaClient = new JenaClient(schemaOntology);
-					//logger.info(" jenaClient = " + jenaClient);
-					MappingPediaEngine.jenaClient_$eq(jenaClient);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			*/
-
-
-
-
-
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally{
