@@ -3,18 +3,15 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>es.upm.fi.dia.oeg.mappingpedia</groupId>
 	<artifactId>mappingpedia-ws</artifactId>
-	<version>0.9.1-SNAPSHOT</version>
+	<version>0.9.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<properties>
-		<scala.version>2.11.8</scala.version>
+        <scala.version>2.11.8</scala.version>
         <jena.version>3.1.0</jena.version>
-		<commons.codec.version>1.8</commons.codec.version>
-		<grizzled.version>1.0.1</grizzled.version>
 		<slf4j-log4j12.version>1.7.5</slf4j-log4j12.version>
 		<project.java.version>1.8</project.java.version>
 		<maven.dependency.version>2.5.1</maven.dependency.version>
-		<morphrdb.version>3.9.6</morphrdb.version>
 	</properties>
 
 	<parent>
@@ -33,16 +30,17 @@
 		<dependency>
 			<groupId>es.upm.fi.dia.oeg.mappingpedia</groupId>
 			<artifactId>mappingpedia-engine</artifactId>
-			<version>0.9.1-SNAPSHOT</version>
+			<version>0.9.2-SNAPSHOT</version>
 		</dependency>
 
 
-		<dependency>
+<!--		<dependency>
 			<groupId>org.apache.jena</groupId>
 			<artifactId>apache-jena-libs</artifactId>
 			<type>pom</type>
 			<version>${jena.version}</version>
-		</dependency>
+		</dependency>-->
+
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
