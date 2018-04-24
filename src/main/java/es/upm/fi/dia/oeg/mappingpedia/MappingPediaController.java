@@ -17,7 +17,7 @@ import es.upm.fi.dia.oeg.mappingpedia.model.*;
 import es.upm.fi.dia.oeg.mappingpedia.model.result.*;
 import es.upm.fi.dia.oeg.mappingpedia.utility.*;
 import org.apache.commons.io.FileUtils;
-import org.apache.jena.ontology.OntModel;
+//import org.apache.jena.ontology.OntModel;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +37,7 @@ public class MappingPediaController {
     private final AtomicLong counter = new AtomicLong();
 
 
-    private OntModel ontModel = MappingPediaEngine.ontologyModel();
+    //private OntModel ontModel = MappingPediaEngine.ontologyModel();
 
     private GitHubUtility githubClient = MappingPediaEngine.githubClient();
     private CKANUtility ckanClient = MappingPediaEngine.ckanClient();

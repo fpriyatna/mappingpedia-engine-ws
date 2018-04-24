@@ -3,7 +3,7 @@ package es.upm.fi.dia.oeg.mappingpedia;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.jena.ontology.OntModel;
+//import org.apache.jena.ontology.OntModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,6 +39,8 @@ public class Application {
 			MappingPediaProperties properties = new MappingPediaProperties(is);
 			properties.load(is);
 			logger.info("Configuration file loaded.");
+			MappingPediaEngine.init(properties);
+			/*
 			MappingPediaEngine.setProperties(properties);
 
 			if(properties.githubEnabled()) {
@@ -90,6 +92,7 @@ public class Application {
 					e.printStackTrace();
 				}
 			}
+			*/
 
 
 
