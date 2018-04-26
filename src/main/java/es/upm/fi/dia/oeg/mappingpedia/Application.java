@@ -23,8 +23,9 @@ public class Application {
 	public static void main(String[] args) {
 		Logger logger = LoggerFactory.getLogger("Application");
 		logger.info("Working Directory = " + System.getProperty("user.dir"));
-		logger.info("Starting MappingPedia Engine version 0.9.1 ...");
+		logger.info("Starting MappingPedia WS version 0.9.2 ...");
 
+		/*
 		InputStream is = null;
 		String configurationFilename = "config.properties";
 		try {
@@ -50,7 +51,10 @@ public class Application {
 				}
 			}
 		}
+		*/
 
+		MappingPediaProperties properties = MappingPediaProperties.apply();
+		MappingPediaEngine.init(properties);
 		SpringApplication.run(Application.class, args);
 
 		MultipartProperties multipartProperties = new MultipartProperties();
@@ -58,6 +62,6 @@ public class Application {
 		String multiPartPropertiesLocation = multipartProperties.getLocation();
 		logger.info("multiPartPropertiesLocation = " + multiPartPropertiesLocation);
 
-		logger.info("Mappingpedia engine started.\n\n\n");
+		logger.info("Mappingpedia WS started.\n\n\n");
 	}
 }

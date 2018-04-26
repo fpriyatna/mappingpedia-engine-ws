@@ -224,6 +224,17 @@ public class MappingPediaController {
 
     }
 
+    @RequestMapping(value="/ckan_annotated_resources_ids", method= RequestMethod.GET)
+    public ListResult<String> getCKANAnnotatedResourcesIds(
+            @RequestParam(value="package_id", required = true) String packageId
+    ) {
+        logger.info("GET /ckan_annotated_resources_ids ...");
+        logger.info("this.ckanClient = " + this.ckanClient);
+
+        ListResult<String> result = this.ckanClient.getAnnotatedResourcesIdsAsListResult(packageId);
+        return result;
+    }
+
     @RequestMapping(value="/ckan_resource_url", method= RequestMethod.GET)
     public ListResult<String> getCKANResourceUrl(
             @RequestParam(value="resource_id", required = true) String resourceId
@@ -231,7 +242,6 @@ public class MappingPediaController {
         logger.info("GET /ckan_resource_url ...");
         ListResult<String> result = this.ckanClient.getResourcesUrlsAsListResult(resourceId);
         return result;
-
     }
 
     @RequestMapping(value="/ckanResource", method= RequestMethod.POST)
