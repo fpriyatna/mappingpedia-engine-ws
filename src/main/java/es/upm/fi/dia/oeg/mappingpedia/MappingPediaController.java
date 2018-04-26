@@ -466,6 +466,7 @@ public class MappingPediaController {
             , @RequestParam(value="output_filename", required = false) String outputFilename
             , @RequestParam(value="output_fileextension", required = false) String outputFileExtension
             , @RequestParam(value="output_mediatype", required = false, defaultValue="text/txt") String outputMediaType
+            , @RequestParam(value="update_resource", required = false, defaultValue="true") String pUpdateResource
 
             //jdbc related field
             , @RequestParam(value="db_username", required = false) String dbUserName
@@ -491,6 +492,9 @@ public class MappingPediaController {
         logger.info("output_fileextension = " + outputFileExtension);
         logger.info("output_mediatype = " + outputMediaType);
         logger.info("callback_url = " + callbackURL);
+        logger.info("pUpdateResource = " + pUpdateResource);
+
+
 
         try {
             Agent organization = Agent.apply(organizationId);
@@ -548,8 +552,8 @@ public class MappingPediaController {
             String mdDownloadURL = md.getDownloadURL();
 
             if(md.hash() == null && mdDownloadURL != null) {
-                    md.hash_$eq(MappingPediaUtility.calculateHash(
-                            mdDownloadURL, "UTF-8"));
+                md.hash_$eq(MappingPediaUtility.calculateHash(
+                        mdDownloadURL, "UTF-8"));
             }
             logger.debug("md.sha = " + md.hash());
 
@@ -576,8 +580,7 @@ public class MappingPediaController {
 
 
             Boolean useCache = MappingPediaUtility.stringToBoolean(pUseCache);
-
-            logger.info("md.getMapping_language() = " + md.getMapping_language());
+            Boolean updateResource = MappingPediaUtility.stringToBoolean(pUpdateResource);
             MappingExecution mappingExecution = new MappingExecution(md
                     , dataset.getUnannotatedDistributions()
                     , jdbcConnection
@@ -590,6 +593,7 @@ public class MappingPediaController {
                     , true
                     , useCache
                     , callbackURL
+                    , updateResource
             );
             //IN THIS PARTICULAR CASE WE HAVE TO STORE THE EXECUTION RESULT ON CKAN
             return mappingExecutionController.executeMapping(mappingExecution);
@@ -952,6 +956,7 @@ public class MappingPediaController {
             , @RequestParam(value="use_cache", required = false, defaultValue="true") String pUseCache
             , @RequestParam(value="callback_url", required = false) String callbackURL
             , @RequestParam(value="callback_field", required = false) String callbackField
+            , @RequestParam(value="update_resource", required = false, defaultValue="true") String pUpdateResource
     )
     {
         logger.info("[POST] /datasets_mappings_execute");
@@ -1025,6 +1030,7 @@ public class MappingPediaController {
             boolean useCache = MappingPediaUtility.stringToBoolean(pUseCache);
             if("true".equalsIgnoreCase(executeMapping)) {
                 if(addMappingDocumentResultStatusCode >= 200 && addMappingDocumentResultStatusCode < 300) {
+                    boolean updateResource = MappingPediaUtility.stringToBoolean(pUpdateResource);
 
                     try {
                         MappingExecution mappingExecution = new MappingExecution(
@@ -1034,9 +1040,10 @@ public class MappingPediaController {
                                 , true
                                 , true
                                 , true
-
                                 , useCache
                                 , callbackURL
+                                , updateResource
+
                         );
 
                         ExecuteMappingResult executeMappingResult =
@@ -1456,7 +1463,7 @@ public class MappingPediaController {
             logger.error("invalid value for maximum_mapping_documents!");
         }
         ListResult result = mappingExecutionController.getInstances(
-                aClass, maxMappingDocuments, useCache) ;
+                aClass, maxMappingDocuments, useCache, false) ;
         return result;
     }
 
