@@ -750,6 +750,7 @@ public class MappingPediaController {
         logger.info("dataset_id = " + pDatasetID);
         logger.info("ckan_package_id = " + ckanPackageId);
         logger.info("ckan_package_name = " + ckanPackageName);
+        logger.info("ckan_resource_id = " + ckanResourceId);
         logger.info("mappingFile = " + mappingFileMultipartFile);
         logger.info("mapping_document_file = " + mappingDocumentFileMultipartFile);
         logger.info("mapping_document_download_url = " + pMappingDocumentDownloadURL1);
