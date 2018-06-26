@@ -851,7 +851,8 @@ public class MappingPediaController {
         logger.info("dataset_id = " + datasetID);
         logger.info("ckan_package_id = " + ckanPackageId);
         logger.info("ckan_package_name = " + ckanPackageName);
-        logger.info("mapping_language = " + pMappingLanguage1);
+        logger.info("ckan_resource_id = " + ckanResourceId);
+       logger.info("mapping_language = " + pMappingLanguage1);
         logger.info("mappingLanguage = " + pMappingLanguage2);
         try {
             boolean generateManifestFile = MappingPediaUtility.stringToBoolean(pGenerateManifestFile);
