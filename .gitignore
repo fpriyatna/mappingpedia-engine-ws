@@ -30,5 +30,3 @@ hs_err_pid*
 upload-dir/
 executions/
 .idea/
-config.properties
-src/main/resources/config.properties
